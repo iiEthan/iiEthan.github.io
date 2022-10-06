@@ -1,0 +1,9 @@
+{
+  "cam": [
+    {
+      "id": 0,
+      "title": "test",
+      "camURL": "http://camera.buffalotrace.com/mjpg/video.mjpg"
+    }
+  ]
+}
