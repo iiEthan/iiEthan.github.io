@@ -1,26 +1,6 @@
 {
-  "type": "module",
-  "name": "iiethan.github.io",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/iiEthan/iiEthan.github.io.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/iiEthan/iiEthan.github.io/issues"
-  },
-  "homepage": "https://github.com/iiEthan/iiEthan.github.io#readme",
   "dependencies": {
-    "lowdb": "^3.0.0",
-    "path": "^0.12.7",
-    "url": "^0.11.0"
+    "express": "^4.18.2",
+    "lowdb": "^3.0.0"
   }
 }
