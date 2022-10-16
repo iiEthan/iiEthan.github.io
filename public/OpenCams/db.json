@@ -1,9 +1,39 @@
 {
   "cam": [
     {
-      "id": 1,
       "title": "test",
-      "camURL": "http://camera.buffalotrace.com/mjpg/video.mjpg"
+      "url": "http://camera.buffalotrace.com/mjpg/video.mjpg",
+      "id": 0
+    },
+    {
+      "title": "test",
+      "url": "http://camera.buffalotrace.com/mjpg/video.mjpg",
+      "id": 1
+    },
+    {
+      "title": "test2",
+      "url": "http://google.com",
+      "id": 2
+    },
+    {
+      "title": "test2",
+      "url": "http://google.com",
+      "id": 3
+    },
+    {
+      "title": "test",
+      "url": "http://camera.buffalotrace.com/mjpg/video.mjpg",
+      "id": 4
+    },
+    {
+      "title": "test",
+      "url": "http://camera.buffalotrace.com/mjpg/video.mjpg",
+      "id": 5
+    },
+    {
+      "title": "test",
+      "url": "http://camera.buffalotrace.com/mjpg/video.mjpg",
+      "id": 6
     }
   ]
 }
