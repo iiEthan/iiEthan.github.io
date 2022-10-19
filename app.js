@@ -55,7 +55,6 @@ app.delete('/api/:id', async (request, response) => {
   await db.read()
   let cameras = db.data.cam
   const deletedCam = db.data.cam[id]
-  console.log(deletedCam)
 
   // Remove item from the cam array
   cameras = cameras.filter(i => i.id !== id)
@@ -73,6 +72,7 @@ app.delete('/api/:id', async (request, response) => {
 app.patch("/api/:id", async (request, response) => {
   const cam = request.body
   const id = Number(request.params.id)
+  cam.id = id
 
   // Verify validity of data before pushing
   const validate = validateData(cam)
@@ -80,7 +80,6 @@ app.patch("/api/:id", async (request, response) => {
 
   if (isDataValid) {
     await db.read()
-    cam.id = id
     db.data.cam[id] = cam
     await db.write()
   }
@@ -93,7 +92,7 @@ app.patch("/api/:id", async (request, response) => {
 
 function validateData(content) {
   // Check to see if all keys are in object
-  if ("title" in content && "url" in content) {
+  if ("title" in content && "url" in content && "id" in content) {
     return [true, "Success"]
   } else {
     return [false, "Failed: Bad data formatting"]
@@ -109,4 +108,5 @@ function reorder(content) {
     item.id = count
     count++
   })
+
 }
