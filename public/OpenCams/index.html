@@ -5,6 +5,7 @@
         <link href="/OpenCams/main.css" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+        <link href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.6.6/css/flag-icons.min.css" rel="stylesheet">
         <meta name="viewport" content="with=device-width, intial-scale=1.0">
         <link rel="icon" type="image/x-icon" href="/images/OpenCams.ico">
         <title>OpenCams | Ethan Gibbs</title>
@@ -13,8 +14,27 @@
         <id class="main">
             <img class="stream" src="http://camera.buffalotrace.com/mjpg/video.mjpg">
             <div class="ui-container">
-                <button type="submit" class="btn dropdown-btn">
-                    <i class="bi-chevron-double-down"></i>
+                <div class="center-controls">
+                    <button class="btn first-btn" title="First">
+                        <i class="toolbar-icon bi-chevron-double-left"></i>
+                    </button>
+                    <button class="btn" title="Previous">
+                        <i class="toolbar-icon bi-chevron-left"></i>
+                    </button>
+                    <div id="number">123</div>
+                    <button class="btn" title="Next">
+                        <i class="toolbar-icon bi-chevron-right"></i>
+                    </button>
+                    <button class="btn" title="Last">
+                        <i class="toolbar-icon bi-chevron-double-right"></i>
+                    </button>
+                </div>
+                <div class="info">
+                    <span class="fi fi-us" title="us"></span>
+                    <div id="title">Blanton Bottling Plant 32 chars max</div> 
+                </div>
+                <button class="btn dropdown-btn" title="Drop Interface">
+                    <i class="toolbar-icon bi-chevron-double-down"></i>
                 </button>
             </div>
         </id>
