@@ -3,7 +3,6 @@
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
     background-color: black !important;
 }
 
@@ -16,13 +15,14 @@ body {
     height: calc(100% - var(--ui-height));
 }
 
-.ui-container {
-    background-color: white;
+#ui-container {
+    background: white;
     height: var(--ui-height);
     width: 100%;
     position: fixed;
     bottom: 0px;
     padding: 5px;
+    box-shadow: 0px 0px 6px inset;
 }
 
 .toolbar-icon {
@@ -32,8 +32,11 @@ body {
 }
 
 .toolbar-icon:hover {
-    color:rgb(100, 100, 100);
+    color:rgb(110, 110, 110);
+}
 
+.toolbar-icon:active {
+    color:rgb(110, 110, 110);
 }
 
 .btn {
@@ -43,32 +46,58 @@ body {
 }
 
 .btn:active {
-    background-color: rgb(245, 245, 245) !important;   
+    background-color: rgb(220, 220, 220) !important;   
     border-color: transparent !important;
 }
 
-.dropdown-btn {
+.dropdown-expand-btns {
     float: right;
     right: 10px;
+    position: fixed;
+    bottom: 5px;
+}
+
+.expand {
+    color: white;
+    font-size: 40px;
+    transform: translate(-50%, -50%);
+    position: fixed;
+}
+
+.expand:hover {
+    color: rgb(200, 200, 200) !important;
+}
+
+.expand:active {
+    color: rgb(201, 201, 201) !important;
+}
+
+.dark-active-bg:active {
+    background-color: rgb(48, 48, 48) !important;
+}
+
+.bottom {
+    bottom: -30px;
 }
 
 #number {
-    display: inline;
-    padding: 5px;
+    display: inline-block;
+    font-size: 32px;
+    vertical-align: top;
+    min-width: 32px;
 }
 
 #title {
     font-size: 30px;
-    float: left;
     max-width: calc(50% - 190px);
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-    margin-left: 10px;
+    margin-left: 75px;
+    position: absolute;
 }
 
-.center-controls {
-    font-size: 25px;
+#center-controls {
     text-align: center;
     width: 100%;
     position: absolute;
@@ -77,4 +106,9 @@ body {
 .fi {
     font-size: 50px;
     float: left;
+    border-radius: 5px 5px 5px 5px;
 }
+
+::placeholder {
+    outline-width: 0 !important;
+  }

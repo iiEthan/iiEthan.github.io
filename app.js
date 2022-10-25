@@ -44,7 +44,7 @@ app.get('/api', async (request, response) => {
 
 // GET specific cam
 app.get('/api/:id', async (request, response) => {
-  const id = request.params.id
+  const id = request.params.id - 1
   await db.read()
   response.json(db.data.cam[id]);
 });
