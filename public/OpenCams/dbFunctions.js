@@ -13,8 +13,8 @@ export class dbFunctions {
         return response.json()
     }
 
-    async post(data, id) {
-        const response = await fetch(`/api/${id}`, {
+    async post(data) {
+        const response = await fetch(`/api/${data.id}`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -22,7 +22,7 @@ export class dbFunctions {
             body: JSON.stringify(data)
           })
         const json = await response.json()
-        console.log("POST " + id, json)
+        console.log("POST " + data.id, json)
     }
 
     async remove(id) {
@@ -36,16 +36,16 @@ export class dbFunctions {
         console.log("DELETE " + id, res)
     }
 
-    async update(data, id) {
-        const response = await fetch(`/api/${id}`, {
+    async update(data) {
+        const response = await fetch(`/api/${data.id}`, {
             method: "PATCH",
             headers: {
               "Content-Type": "application/json",
             },
             body: JSON.stringify(data)
           })
-        const res = await response.json()
-        console.log("UPDATE " + id, res)
+        const json = await response.json()
+        console.log("UPDATE " + data.id, json)
     }
 
 }

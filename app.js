@@ -2,8 +2,15 @@ import { join, dirname } from 'path'
 import { Low, JSONFile } from 'lowdb'
 import { fileURLToPath } from 'url'
 import express from 'express'
+import session from 'express-session'
+import bcrypt from 'bcrypt'
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
+// Must use require to import json file
+import { createRequire } from 'module'
+const require = createRequire(import.meta.url)
+const json = require('./passcode.json')
+
+const __dirname = dirname(fileURLToPath(import.meta.url))
 
 // Use JSON file for storage
 const file = join(__dirname, './public/OpenCams/db.json')
@@ -16,16 +23,25 @@ app.listen(3000, () => console.log("listening at 3000"))
 app.use(express.static("public")) // Load files in public directory
 app.use(express.json({ limit: "1mb" })) // Prevent db from flooding
 
-// POST requests
+app.use(session({
+	secret: 'secret',
+	resave: true,
+	saveUninitialized: true
+}));
+app.use(express.urlencoded({ extended: true }))
+
+
+// POST cam
 app.post("/api/:id", async (request, response) => {
   const cam = request.body
   
   // Verify validity of data before pushing
-  const validate = validateData(cam)
+  const validate = await validateData(cam)
   const isDataValid = validate[0], status = validate[1]
+  delete cam.passcode
 
   if (isDataValid) {
-    await db.read()
+    await db.read()   
     db.data.cam.push(cam)
     await db.write()
   }
@@ -36,17 +52,17 @@ app.post("/api/:id", async (request, response) => {
   })
 })
 
-// GET all
+// GET all cams
 app.get('/api', async (request, response) => {
   await db.read()
-  response.json(db.data);
-});
+  response.json(db.data)
+})
 
 // GET specific cam
 app.get('/api/:id', async (request, response) => {
   const id = request.params.id - 1
   await db.read()
-  response.json(db.data.cam[id]);
+  response.json(db.data.cam[id])
 });
 
 // DELETE cam
@@ -58,9 +74,11 @@ app.delete('/api/:id', async (request, response) => {
 
   // Remove item from the cam array
   cameras = cameras.filter(i => i.id !== id)
-
-  // Reorder the id's so there is no gap
-  reorder(cameras)
+  let count = 0
+  cameras.forEach(cam => {
+    cam.id = count
+    count++
+  })
 
   db.data.cam = cameras
   db.write()
@@ -90,23 +108,18 @@ app.patch("/api/:id", async (request, response) => {
   })
 })
 
-function validateData(content) {
+async function validateData(content) {
   // Check to see if all keys are in object
   if ("title" in content && "url" in content && "id" in content) {
-    return [true, "Success"]
+    if (await bcrypt.compare(content.passcode, json.hash)) {
+      return [true, "Success"]
+    } else {
+      return [false, "Failed: Incorrect password"]
+    }
   } else {
     return [false, "Failed: Bad data formatting"]
   }
 
     // TODO: Check duplicate title, make sure camURL works
-
-}
-
-function reorder(content) {
-  let count = 0
-  content.forEach(item => {
-    item.id = count
-    count++
-  })
 
 }

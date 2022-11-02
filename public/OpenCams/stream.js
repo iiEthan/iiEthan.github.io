@@ -4,19 +4,19 @@ let db = new dbFunctions()
 const camsList = await db.get()
 const max = camsList.cam.length
 var camNum
-// Save to check height when we load new camera
 var dropped
 
 // Check if we have url params, set to cam 1 if none provided
 if (window.location.search.includes("cam")) {
     loadCam()
 } else {
-    window.location.search = "cam=1"
+    setURLParam(1)
 }
 
 function setURLParam(newCam) {
     camNum = newCam
     history.replaceState(`?cam=${camNum}`, '', `?cam=${newCam}`);
+    loadCam() 
 }
 
 function getCurrentCam() {
@@ -44,7 +44,6 @@ async function loadCam() {
 window.firstCam = function firstCam() {
     if (camNum != 1) {
         setURLParam(1)
-        loadCam()    
     }
 }
 
@@ -52,7 +51,6 @@ window.nextCam = function nextCam() {
     const next = Number(camNum) + 1
     if (next <= max) {
         setURLParam(next)
-        loadCam()
     }
 }
 
@@ -61,7 +59,6 @@ window.previousCam = function previousCam() {
         const previous = Number(camNum) - 1
         if (previous > 0) {
             setURLParam(previous)
-            loadCam()
         }
     }
 }
@@ -69,7 +66,6 @@ window.previousCam = function previousCam() {
 window.lastCam = function lastCam() {
     if (camNum != max) {
         setURLParam(max)
-        loadCam()
     }
 }
 
@@ -100,3 +96,55 @@ document.addEventListener('keydown', (event) => {
     }
 
 }, false)
+
+
+function getCountries(lang = 'en') {
+    const A = 65
+    const Z = 90
+    const countryName = new Intl.DisplayNames([lang], { type: 'region' });
+    const countries = {}
+    // duplicate country codes
+    const ignore = ["DD", "YD", "TP", "QO", "MI", "JT", "BU", "RH", "XA", "XB", "CS", "YU", "DY", "CW", "PU", "WK", "QU", "UK", "SU", "HV", "NQ", "FQ", "FX", "VD", "PC", "CT", "PZ", "NT", "NH", "ZR"]
+    for(let i=A; i<=Z; ++i) {
+        for(let j=A; j<=Z; ++j) {
+            let code = String.fromCharCode(i) + String.fromCharCode(j)
+            if (ignore.includes(code)) continue
+            let name = countryName.of(code)
+            if (code !== name) {
+                countries[code] = name
+            }
+        }
+    }
+    return countries
+}
+
+// Add countries to form selection
+const countries = getCountries()
+let formSelect = document.getElementById("countrySelect")
+
+for (const cc in countries) {
+    let option = document.createElement("option");
+    option.value = countries[cc]
+    option.text = countries[cc]
+    if (cc == "US") option.selected = true    
+
+    formSelect.appendChild(option)
+}
+
+// Submit handler - add
+window.addCamForm = async function addCamForm(event) {
+    event.preventDefault()
+    const element = event.target.elements
+
+    const country = element.countrySelect.value
+    const cc = Object.keys(countries).find(key => countries[key] === country).toLowerCase()   
+    
+    const data = {
+        title: element.titleInput.value,
+        url: element.urlInput.value,
+        cc: cc,
+        id: camsList.cam.length + 1,
+        passcode: element.passcodeInput.value
+    }
+    db.post(data)
+}

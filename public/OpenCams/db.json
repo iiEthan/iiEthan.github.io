@@ -4,25 +4,25 @@
       "title": "Blanton Bottling Plant",
       "url": "http://camera.buffalotrace.com/mjpg/video.mjpg",
       "id": 1,
-      "cc" : "us"
+      "cc": "us"
     },
     {
       "title": "NYC Sidewalk",
       "url": "http://72.43.190.171:81/mjpg/video.mjpg",
       "id": 2,
-      "cc" : "us"
+      "cc": "us"
     },
     {
       "title": "Leland Pet Resort",
       "url": "http://66.57.67.108:1024/mjpg/video.mjpg",
       "id": 3,
-      "cc" : "us"
+      "cc": "us"
     },
     {
-      "title": "Stadthaus (Coburq)",
+      "title": "Stadthaus Coburq",
       "url": "http://cam-stadthaus.dacor.de/cgi-bin/faststream.jpg?stream=full&fps=0",
       "id": 4,
-      "cc" : "de"
+      "cc": "de"
     }
   ]
 }
