@@ -130,3 +130,8 @@ body {
     font-style: italic;
     font-size: 10px;
  }
+
+ #addError {
+    color: rgb(255, 0, 0);
+    text-align: center;
+ }

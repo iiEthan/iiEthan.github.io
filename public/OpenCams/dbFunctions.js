@@ -23,6 +23,7 @@ export class dbFunctions {
           })
         const json = await response.json()
         console.log("POST " + data.id, json)
+        return json.status[0]
     }
 
     async remove(id) {
@@ -44,8 +45,9 @@ export class dbFunctions {
             },
             body: JSON.stringify(data)
           })
-        const json = await response.json()
-        console.log("UPDATE " + data.id, json)
+          const json = await response.json()
+          console.log("POST " + data.id, json)
+          return json.status[0]
     }
-
+    
 }

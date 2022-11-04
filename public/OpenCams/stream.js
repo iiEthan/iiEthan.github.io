@@ -1,8 +1,8 @@
 import {dbFunctions} from './dbFunctions.js'
 
 let db = new dbFunctions()
-const camsList = await db.get()
-const max = camsList.cam.length
+var camsList = await db.get()
+var max = camsList.cam.length
 var camNum
 var dropped
 
@@ -132,13 +132,13 @@ for (const cc in countries) {
 }
 
 // Submit handler - add
-window.addCamForm = async function addCamForm(event) {
+window.addCam = async function addCam(event) {
     event.preventDefault()
+
     const element = event.target.elements
 
     const country = element.countrySelect.value
     const cc = Object.keys(countries).find(key => countries[key] === country).toLowerCase()   
-    
     const data = {
         title: element.titleInput.value,
         url: element.urlInput.value,
@@ -146,5 +146,18 @@ window.addCamForm = async function addCamForm(event) {
         id: camsList.cam.length + 1,
         passcode: element.passcodeInput.value
     }
-    db.post(data)
+
+    if (await db.post(data)) {
+        // Add cams to browser then close modal
+        camsList = await db.get()
+        max = camsList.cam.length
+
+        const myModalEl = document.getElementById('addModal')
+        const modal = bootstrap.Modal.getInstance(myModalEl)
+        modal.hide()
+    } else {
+        let err = document.getElementById('addError');
+        err.removeAttribute("hidden");
+    }
+
 }

@@ -37,17 +37,16 @@ app.post("/api/:id", async (request, response) => {
   
   // Verify validity of data before pushing
   const validate = await validateData(cam)
-  const isDataValid = validate[0], status = validate[1]
   delete cam.passcode
 
-  if (isDataValid) {
+  if (validate[0]) {
     await db.read()   
     db.data.cam.push(cam)
     await db.write()
   }
-  
+
   response.json({
-    status: status,
+    status: validate,
     body: request.body
   })
 })
@@ -93,17 +92,17 @@ app.patch("/api/:id", async (request, response) => {
   cam.id = id
 
   // Verify validity of data before pushing
-  const validate = validateData(cam)
-  const isDataValid = validate[0], status = validate[1]
+  const validate = await validateData(cam)
+  delete cam.passcode
 
-  if (isDataValid) {
-    await db.read()
-    db.data.cam[id] = cam
+  if (validate[0]) {
+    await db.read()   
+    db.data.cam.push(cam)
     await db.write()
   }
   
   response.json({
-    status: status,
+    status: validate,
     body: request.body
   })
 })
