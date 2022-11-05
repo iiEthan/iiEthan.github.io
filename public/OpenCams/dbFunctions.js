@@ -38,7 +38,7 @@ export class dbFunctions {
     }
 
     async update(data) {
-        const response = await fetch(`/api/${data.id}`, {
+        const response = await fetch(`/api/${data.id - 1}`, {
             method: "PATCH",
             headers: {
               "Content-Type": "application/json",
@@ -46,7 +46,7 @@ export class dbFunctions {
             body: JSON.stringify(data)
           })
           const json = await response.json()
-          console.log("POST " + data.id, json)
+          console.log("UPDATE " + (data.id - 1), json)
           return json.status[0]
     }
     

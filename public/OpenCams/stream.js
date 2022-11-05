@@ -1,12 +1,13 @@
 import {dbFunctions} from './dbFunctions.js'
 
 let db = new dbFunctions()
+const countries = getCountries()
 var camsList = await db.get()
 var max = camsList.cam.length
-var camNum
-var dropped
+var camNum = getCurrentCam()
+var dropped = false
 
-// Check if we have url params, set to cam 1 if none provided
+// Check if we have url params, set to first if none provided
 if (window.location.search.includes("cam")) {
     loadCam()
 } else {
@@ -14,8 +15,7 @@ if (window.location.search.includes("cam")) {
 }
 
 function setURLParam(newCam) {
-    camNum = newCam
-    history.replaceState(`?cam=${camNum}`, '', `?cam=${newCam}`);
+    history.replaceState('', '', `?cam=${newCam}`)
     loadCam() 
 }
 
@@ -31,15 +31,14 @@ async function loadCam() {
 
     // Height may be different because of dropdown button
     let streamHeight = ""
-    if (dropped) {streamHeight = ` style="height:100%"`}
+    if (dropped) {streamHeight = `style="height:100%"`}
 
     document.getElementById("number").innerHTML = camNum
     const cam = await db.get(camNum)
     document.getElementById("stream").innerHTML = `<img class="stream" id="strm" src="${cam.url}"${streamHeight}></img>`
     document.getElementById("title").innerHTML = cam.title
-    document.getElementById("flag").innerHTML = `<span class="fi fi-${cam.cc}" title="${cam.cc}"></span>`
+    document.getElementById("flag").innerHTML = `<span class="fi fi-${cam.cc.toLowerCase()}" title="${cam.cc}"></span>`
 }
-
 
 window.firstCam = function firstCam() {
     if (camNum != 1) {
@@ -97,14 +96,14 @@ document.addEventListener('keydown', (event) => {
 
 }, false)
 
-
+// Get list of countries and country codes for add/update forms
 function getCountries(lang = 'en') {
     const A = 65
     const Z = 90
-    const countryName = new Intl.DisplayNames([lang], { type: 'region' });
+    const countryName = new Intl.DisplayNames([lang], { type: 'region' })
     const countries = {}
-    // duplicate country codes
-    const ignore = ["DD", "YD", "TP", "QO", "MI", "JT", "BU", "RH", "XA", "XB", "CS", "YU", "DY", "CW", "PU", "WK", "QU", "UK", "SU", "HV", "NQ", "FQ", "FX", "VD", "PC", "CT", "PZ", "NT", "NH", "ZR"]
+    // duplicate/invalid country codes
+    const ignore = ["DD", "YD", "TP", "QO", "MI", "JT", "BU", "RH", "XA", "XB", "CS", "YU", "DY", "CW", "PU", "WK", "QU", "UK", "SU", "HV", "NQ", "FQ", "FX", "VD", "PC", "CT", "PZ", "NT", "NH", "ZR", "EZ", "ZZ"]
     for(let i=A; i<=Z; ++i) {
         for(let j=A; j<=Z; ++j) {
             let code = String.fromCharCode(i) + String.fromCharCode(j)
@@ -118,46 +117,92 @@ function getCountries(lang = 'en') {
     return countries
 }
 
-// Add countries to form selection
-const countries = getCountries()
-let formSelect = document.getElementById("countrySelect")
+async function closeModal(id) {
+    // Add cams to browser then close modal
+    camsList = await db.get()
+    max = camsList.cam.length
 
-for (const cc in countries) {
-    let option = document.createElement("option");
-    option.value = countries[cc]
-    option.text = countries[cc]
-    if (cc == "US") option.selected = true    
-
-    formSelect.appendChild(option)
+    const modalEl = document.getElementById(id)
+    const modal = bootstrap.Modal.getInstance(modalEl)
+    modal.hide()
 }
 
-// Submit handler - add
+function formatPostData(event) {    
+    const country = event.target.elements.countrySelection.value
+    const cc = Object.keys(countries).find(key => countries[key] === country)  
+    const data = {
+        title: event.target[1].value,
+        url: event.target[2].value,
+        cc: cc,
+        id: camsList.cam.length + 1,
+        passcode: event.target[4].value
+    }
+
+    return data
+}
+
+// Fires when a modal is opened
+window.modalLoad = function modalLoad(event) {
+    const isAdd = (event.target.id == "add-item")
+    const isRemove = (event.target.id == "remove-item")
+    const isUpdate = (event.target.id == "update-item")
+
+    if (isAdd || isUpdate) {
+        // Add countries to form selection
+        const countryElements = Object.values(document.getElementsByClassName("countrySelect"))
+        countryElements.forEach(formSelect => {
+            if (formSelect.options[0] != null) {
+                for (let i in formSelect.options) {
+                    formSelect.remove(formSelect.options[i])
+                }
+            }
+
+            for (const cc in countries) {
+                let option = document.createElement("option")
+                option.value = countries[cc]
+                option.text = countries[cc]
+                if (formSelect.classList.contains("add") && (cc == "US")) option.selected = true  
+                if (formSelect.classList.contains("update") && (camsList.cam[camNum - 1].cc == cc)) option.selected = true
+                        
+                formSelect.appendChild(option)
+            }
+        })
+    }
+
+    if (isUpdate) {
+        const camera = camsList.cam[camNum - 1]
+
+        document.getElementById("updateTitleInput").value = camera.title
+        document.getElementById("updateUrlInput").value = camera.url
+        document.getElementById("updateModalLabel").textContent += ` ${camera.id}`
+    }
+
+}
+
+// Add handler
 window.addCam = async function addCam(event) {
     event.preventDefault()
 
-    const element = event.target.elements
-
-    const country = element.countrySelect.value
-    const cc = Object.keys(countries).find(key => countries[key] === country).toLowerCase()   
-    const data = {
-        title: element.titleInput.value,
-        url: element.urlInput.value,
-        cc: cc,
-        id: camsList.cam.length + 1,
-        passcode: element.passcodeInput.value
-    }
+    let data = formatPostData(event)
 
     if (await db.post(data)) {
-        // Add cams to browser then close modal
-        camsList = await db.get()
-        max = camsList.cam.length
-
-        const myModalEl = document.getElementById('addModal')
-        const modal = bootstrap.Modal.getInstance(myModalEl)
-        modal.hide()
+        await closeModal('addModal')
     } else {
-        let err = document.getElementById('addError');
-        err.removeAttribute("hidden");
+        let err = document.getElementById('addError')
+        if (err.hasAttribute("hidden")) err.removeAttribute("hidden")
     }
+}
 
+// Update handler
+window.updateCam = async function updateCam(event) {
+    event.preventDefault()
+
+    let data = formatPostData(event)
+
+    if (await db.update(data)) {
+        await closeModal('updateModal')
+    } else {
+        let err = document.getElementById('updateError')
+        if (err.hasAttribute("hidden")) err.removeAttribute("hidden")
+    }
 }

@@ -53,9 +53,9 @@
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-header" href="https://github.com/MarioCMFlys" target="_blank" rel="noopener noreferrer">Credit to MarioCMFlys for the inspiration!</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#addModal">Add camera<span class="admin-only">  (admin)</span></a></li>
-                        <li><a class="dropdown-item" onclick="">Remove camera<span class="admin-only"> (admin)</span></a></li>
-                        <li><a class="dropdown-item" onclick="">Update camera<span class="admin-only"> (admin)</span></a></li>
+                        <li><a class="dropdown-item" id="add-item" data-bs-toggle="modal" onclick="modalLoad(event)" data-bs-target="#addModal">Add camera<span class="admin-only">  (admin)</span></a></li>
+                        <li><a class="dropdown-item" id="remove-item" onclick="">Remove camera<span class="admin-only"> (admin)</span></a></li>
+                        <li><a class="dropdown-item" id="update-item" data-bs-toggle="modal" onclick="modalLoad(event)" data-bs-target="#updateModal">Update camera<span class="admin-only">  (admin)</span></a></li>
                         <li><a class="dropdown-item" onclick="">Camera list</a></li>                                        
                     </ul>
                 </div>
@@ -76,26 +76,63 @@
                         <form>
                             <div class="mb-3">
                             <label for="titleInput" class="col-form-label">Title:</label>
-                            <input type="text" class="form-control" id="titleInput" placeholder="32 chars max..."></textarea>
+                            <input type="text" class="form-control" id="addTitleInput" placeholder="32 chars max..."></textarea>
                             </div>
                             <div class="mb-3">
                                 <label for="urlInput" class="col-form-label">URL:</label>
-                                <input type="text" class="form-control" id="urlInput"></textarea>
+                                <input type="text" class="form-control" id="addUrlInput"></textarea>
                             </div>
                             <div class="mb-3">
                                 <label class="col-form-label">Country:</label>
-                                <select id="countrySelect" class="form-select"></select>
+                                <select id="countrySelection" class="form-select countrySelect add"></select>
                             </div>
                             <div class="mb-3">
                                 <label for="passcodeInput" class="col-form-label">Super Secret Passcode:</label>
-                                <input type="password" class="form-control" id="passcodeInput"></textarea>
+                                <input type="password" class="form-control" id="addPasscodeInput"></textarea>
                             </div>
                             <div id="addError" hidden>Passcode was incorrect</div>
                         </form>
                     </div>
-                    <div class="modal-footer" id="juidsidf">
+                    <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                         <button type="submit" class="btn btn-primary">Add</button>
+                    </div>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Update Modal -->
+            <form id="updateModal" onsubmit="return updateCam(event)" class="modal fade" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="updateModalLabel">Update camera</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                            <label for="titleInput" class="col-form-label">Title:</label>
+                            <input type="text" class="form-control" id="updateTitleInput" placeholder="32 chars max..."></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="urlInput" class="col-form-label">URL:</label>
+                                <input type="text" class="form-control" id="updateUrlInput"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label class="col-form-label">Country:</label>
+                                <select id="countrySelection" class="form-select countrySelect update"></select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="passcodeInput" class="col-form-label">Super Secret Passcode:</label>
+                                <input type="password" class="form-control" id="updatePasscodeInput"></textarea>
+                            </div>
+                            <div id="updateError" hidden>Passcode was incorrect</div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
                     </div>
                     </div>
                 </div>

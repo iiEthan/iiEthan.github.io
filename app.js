@@ -97,7 +97,7 @@ app.patch("/api/:id", async (request, response) => {
 
   if (validate[0]) {
     await db.read()   
-    db.data.cam.push(cam)
+    db.data.cam[id-1] = cam
     await db.write()
   }
   

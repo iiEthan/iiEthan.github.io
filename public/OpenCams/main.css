@@ -131,7 +131,7 @@ body {
     font-size: 10px;
  }
 
- #addError {
+ #addError, #updateError {
     color: rgb(255, 0, 0);
     text-align: center;
  }
