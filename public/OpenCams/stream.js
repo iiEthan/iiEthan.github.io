@@ -1,11 +1,11 @@
 import {dbFunctions} from './dbFunctions.js'
 
 let db = new dbFunctions()
-const countries = getCountries()
 var camsList = await db.get()
 var max = camsList.cam.length
 var camNum = getCurrentCam()
 var dropped = false
+const countries = getCountries()
 
 // Check if we have url params, set to first if none provided
 if (window.location.search.includes("cam")) {
@@ -114,6 +114,20 @@ function getCountries(lang = 'en') {
             }
         }
     }
+
+    // Add countries to form selection
+    const countryElements = Object.values(document.getElementsByClassName("countrySelect"))
+        countryElements.forEach(formSelect => {
+    
+        for (const cc in countries) {
+            let option = document.createElement("option")
+            option.value = countries[cc]
+            option.text = countries[cc]
+            if (cc == "US") option.selected = true  
+
+            formSelect.appendChild(option)
+        }
+    })
     return countries
 }
 
@@ -143,40 +157,24 @@ function formatPostData(event) {
 
 // Fires when a modal is opened
 window.modalLoad = function modalLoad(event) {
-    const isAdd = (event.target.id == "add-item")
-    const isRemove = (event.target.id == "remove-item")
-    const isUpdate = (event.target.id == "update-item")
-
-    if (isAdd || isUpdate) {
-        // Add countries to form selection
-        const countryElements = Object.values(document.getElementsByClassName("countrySelect"))
-        countryElements.forEach(formSelect => {
-            if (formSelect.options[0] != null) {
-                for (let i in formSelect.options) {
-                    formSelect.remove(formSelect.options[i])
-                }
-            }
-
-            for (const cc in countries) {
-                let option = document.createElement("option")
-                option.value = countries[cc]
-                option.text = countries[cc]
-                if (formSelect.classList.contains("add") && (cc == "US")) option.selected = true  
-                if (formSelect.classList.contains("update") && (camsList.cam[camNum - 1].cc == cc)) option.selected = true
-                        
-                formSelect.appendChild(option)
-            }
-        })
-    }
-
-    if (isUpdate) {
+    // Updates current selected country in form
+    if (event.target.id == "update-item") {
         const camera = camsList.cam[camNum - 1]
+        const element = document.getElementById("updateCountrySelect")
+        const value = element.options[element.selectedIndex]
+        value.selected = false
+
+        for (const i in element.options) {
+            if (countries[camera.cc] == element.options[i].value) {
+                element.options[i].selected = true
+                break
+            }
+        }
 
         document.getElementById("updateTitleInput").value = camera.title
         document.getElementById("updateUrlInput").value = camera.url
-        document.getElementById("updateModalLabel").textContent += ` ${camera.id}`
+        document.getElementById("updateModalLabel").textContent = `Update camera ${camera.id}`
     }
-
 }
 
 // Add handler

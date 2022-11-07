@@ -23,6 +23,90 @@
       "url": "http://cam-stadthaus.dacor.de/cgi-bin/faststream.jpg?stream=full&fps=0",
       "cc": "DE",
       "id": 4
+    },
+    {
+      "title": "Pilot School",
+      "url": "http://flightcamnorth.db.erau.edu/mjpg/video.mjpg",
+      "cc": "US",
+      "id": 5
+    },
+    {
+      "title": "King Station Seattle",
+      "url": "http://65.152.238.146/mjpg/video.mjpg",
+      "cc": "US",
+      "id": 6
+    },
+    {
+      "title": "Plieningen Airport",
+      "url": "http://94.124.210.59:8083/mjpg/video.mjpg",
+      "cc": "DE",
+      "id": 7
+    },
+    {
+      "title": "Dartmouth",
+      "url": "http://wc2.dartmouth.edu/mjpg/video.mjpg",
+      "cc": "US",
+      "id": 8
+    },
+    {
+      "title": "ETH Zurich",
+      "url": "http://cam002.ethz.ch/mjpg/video.mjpg",
+      "cc": "CH",
+      "id": 9
+    },
+    {
+      "title": "Laser Containment System",
+      "url": "http://128.46.190.180/axis-cgi/mjpg/video.cgi?camera=&resolution=640x480",
+      "cc": "US",
+      "id": 10
+    },
+    {
+      "title": "Sao Paulo Beach",
+      "url": "http://191.241.235.43:80/mjpg/video.mjpg",
+      "cc": "BR",
+      "id": 11
+    },
+    {
+      "title": "Danish Street",
+      "url": "http://62.242.189.219/mjpg/video.mjpg",
+      "cc": "DK",
+      "id": 12
+    },
+    {
+      "title": "Illinois Icerink",
+      "url": "http://50.194.64.65/mjpg/video.mjpg",
+      "cc": "US",
+      "id": 13
+    },
+    {
+      "title": "Observatory",
+      "url": "http://161.72.22.244:80/mjpg/video.mjpg",
+      "cc": "ES",
+      "id": 14
+    },
+    {
+      "title": "Trieste",
+      "url": "http://140.105.156.14:80/cgi-bin/faststream.jpg?stream=half&fps=15&rand=COUNTER",
+      "cc": "IT",
+      "id": 15
+    },
+    {
+      "title": "Roubaix Laundromat",
+      "url": "http://109.190.32.149:82/mjpg/video.mjpg",
+      "cc": "FR",
+      "id": 16
+    },
+    {
+      "title": "Dortmund Traffic",
+      "url": "http://87.139.9.247:80/mjpg/video.mjpg",
+      "cc": "US",
+      "id": 17
+    },
+    {
+      "title": "Tulsa Traffic",
+      "url": "http://38.81.159.248:80/mjpg/video.mjpg",
+      "cc": "US",
+      "id": 18
     }
   ]
 }
