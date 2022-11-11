@@ -1,6 +1,6 @@
-import {dbFunctions} from './dbFunctions.js'
+import * as db from './dbFunctions.js'
 
-let db = new dbFunctions()
+//let db = new dbFunctions()
 var camsList = await db.get()
 var max = camsList.cam.length
 var camNum = getCurrentCam()
@@ -93,7 +93,7 @@ document.addEventListener('keydown', (event) => {
     if (key == "ArrowLeft") {
         previousCam()
     }
-
+    
 }, false)
 
 // Get list of countries and country codes for add/update forms
@@ -141,8 +141,16 @@ async function closeModal(id) {
     modal.hide()
 }
 
-function formatPostData(event) {    
-    const country = event.target.elements.countrySelection.value
+function formatPostData(event) { 
+    let country
+    const element = event.target.elements
+
+    if (typeof element.countrySelection != "undefined") {
+        country = element.countrySelection.value
+    } else {
+        country = element.updateCountrySelect.value
+    }
+
     const cc = Object.keys(countries).find(key => countries[key] === country)  
     const data = {
         title: event.target[1].value,
@@ -204,3 +212,6 @@ window.updateCam = async function updateCam(event) {
         if (err.hasAttribute("hidden")) err.removeAttribute("hidden")
     }
 }
+
+// TODO: Add modal.js as separate 
+// Add remove camera functionality

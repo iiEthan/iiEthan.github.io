@@ -1,6 +1,5 @@
-export class dbFunctions {
  
-    async get(id) {
+ export async function get(id) {
         // If no id is given, we will retrieve the entire database
         let api = "/api"
        if (id !== undefined) {
@@ -11,9 +10,9 @@ export class dbFunctions {
             throw Error(response.statusText)
         }
         return response.json()
-    }
+}
 
-    async post(data) {
+export async function post(data) {
         const response = await fetch(`/api/${data.id}`, {
             method: "POST",
             headers: {
@@ -24,9 +23,9 @@ export class dbFunctions {
         const json = await response.json()
         console.log("POST " + data.id, json)
         return json.status[0]
-    }
+}
 
-    async remove(id) {
+export async function remove(id) {
         const response = await fetch(`/api/${id}`, {
             method: "DELETE"
         })
@@ -35,9 +34,9 @@ export class dbFunctions {
         }
         const res = await response.json()
         console.log("DELETE " + id, res)
-    }
+}
 
-    async update(data) {
+export async function update(data) {
         const response = await fetch(`/api/${data.id - 1}`, {
             method: "PATCH",
             headers: {
@@ -48,6 +47,4 @@ export class dbFunctions {
           const json = await response.json()
           console.log("UPDATE " + (data.id - 1), json)
           return json.status[0]
-    }
-    
 }
