@@ -247,82 +247,76 @@
       "id": 41
     },
     {
-      "title": "Prescott Airport",
-      "url": "http://199.104.253.17:80/mjpg/video.mjpg",
-      "cc": "US",
-      "id": 42
-    },
-    {
       "title": "South Korea Alley",
       "url": "http://119.193.68.199:5000/mjpg/video.mjpg",
       "cc": "KR",
-      "id": 43
+      "id": 42
     },
     {
       "title": "Brookings",
       "url": "http://137.216.132.157:80/mjpg/video.mjpg",
       "cc": "US",
-      "id": 44
+      "id": 43
     },
     {
       "title": "Prescott Airstrip",
       "url": "http://199.104.253.17:80/mjpg/video.mjpg",
       "cc": "US",
-      "id": 45
+      "id": 44
     },
     {
       "title": "Flensburg Port",
       "url": "http://31.209.185.102:80/mjpg/video.mjpg",
       "cc": "DE",
-      "id": 46
+      "id": 45
     },
     {
       "title": "Pendelum",
       "url": "http://pendelcam.kip.uni-heidelberg.de/mjpg/video.mjpg",
       "cc": "DE",
-      "id": 47
+      "id": 46
     },
     {
       "title": "Train Model",
       "url": "http://165.234.49.201:80/mjpg/video.mjpg",
       "cc": "US",
-      "id": 48
+      "id": 47
     },
     {
       "title": "Irish Church",
       "url": "http://86.42.36.190:1024/mjpg/video.mjpg",
       "cc": "IE",
-      "id": 49
+      "id": 48
     },
     {
       "title": "Norwegian Harbor",
       "url": "http://stadsneshamna.asuscomm.com:8090/mjpg/video.mjpg",
       "cc": "NO",
-      "id": 50
+      "id": 49
     },
     {
       "title": "John Vianney",
       "url": "http://80.13.120.225:8083/mjpg/video.mjpg",
       "cc": "FR",
-      "id": 51
+      "id": 50
     },
     {
       "title": "Alaska Climate Research Center",
       "url": "http://climatecam.gi.alaska.edu/mjpg/video.mjpg",
       "cc": "US",
-      "id": 52
+      "id": 51
     },
     {
       "title": "Marine Biological Association",
       "url": "http://192.171.163.3/mjpg/video.mjpg",
       "cc": "US",
-      "id": 53
+      "id": 52
     },
     {
       "title": "Shipbuilders",
       "url": "http://31.209.185.103/mjpg/video.mjpg",
       "cc": "DE",
-      "id": 54
+      "id": 53
     }
   ]
 }

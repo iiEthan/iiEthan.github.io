@@ -1,7 +1,7 @@
 import * as db from './dbFunctions.js'
 
-var camsList = await db.get()
-var max = camsList.cam.length
+var camsList = (await db.get()).cam
+var max = camsList.length
 var camNum = getCurrentCam()
 var dropped = false
 
@@ -20,13 +20,13 @@ function setURLParam(newCam) {
 export function getCurrentCam() {
     const url = new URL(window.location.href)
     const searchParams = new URLSearchParams(url.search)
-    camNum = searchParams.get('cam')
+    camNum = Number(searchParams.get('cam'))
     return camNum
 }
 
 export async function setMax() {
-    camsList = await db.get()
-    max = camsList.cam.length
+    camsList = (await db.get()).cam
+    max = camsList.length
 }
 
 async function loadCam() {
@@ -50,7 +50,7 @@ window.firstCam = function firstCam() {
 }
 
 window.nextCam = function nextCam() {
-    const next = Number(camNum) + 1
+    const next = camNum + 1
     if (next <= max) {
         setURLParam(next)
     }
@@ -58,7 +58,7 @@ window.nextCam = function nextCam() {
 
 window.previousCam = function previousCam() {
     if (camNum > 1) {
-        const previous = Number(camNum) - 1
+        const previous = camNum - 1
         if (previous > 0) {
             setURLParam(previous)
         }

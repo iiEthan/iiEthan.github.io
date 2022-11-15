@@ -27,7 +27,7 @@ app.use(session({
 	secret: 'secret',
 	resave: true,
 	saveUninitialized: true
-}));
+}))
 app.use(express.urlencoded({ extended: true }))
 
 
@@ -62,27 +62,35 @@ app.get('/api/:id', async (request, response) => {
   const id = request.params.id - 1
   await db.read()
   response.json(db.data.cam[id])
-});
+})
 
 // DELETE cam
 app.delete('/api/:id', async (request, response) => {
-  const id = Number(request.params.id)
+  const cam = request.body
   await db.read()
   let cameras = db.data.cam
-  const deletedCam = db.data.cam[id]
+
+  // Verify validity of data before pushing
+  const validate = await validateData(cam)
+  delete cam.passcode
 
   // Remove item from the cam array
-  cameras = cameras.filter(i => i.id !== id)
-  let count = 0
-  cameras.forEach(cam => {
-    cam.id = count
-    count++
+  if (validate[0]) {
+    cameras = cameras.filter(i => i.id !== cam.id)
+    let count = 1
+    cameras.forEach(camera => {
+      camera.id = count
+      count++
+    })
+
+    db.data.cam = cameras
+    db.write()
+  }
+
+  response.json({
+    status: validate,
+    body: request.body
   })
-
-  db.data.cam = cameras
-  db.write()
-
-  response.json({body: deletedCam});
 })
 
 // UPDATE cam
@@ -118,7 +126,5 @@ async function validateData(content) {
   } else {
     return [false, "Failed: Bad data formatting"]
   }
-
-    // TODO: Check duplicate title, make sure camURL works
 
 }
