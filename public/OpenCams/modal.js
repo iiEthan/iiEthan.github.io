@@ -90,7 +90,7 @@ window.modalLoad = function modalLoad(event) {
     }
 }
 
-
+// Hides the forms
 async function closeModal(id) {
     await setMax()
 
@@ -99,6 +99,7 @@ async function closeModal(id) {
     modal.hide()
 }
 
+// Formats data to be pushed to api
 function formatPostData(event) { 
     let country
     const element = event.target.elements

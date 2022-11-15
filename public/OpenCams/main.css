@@ -51,7 +51,7 @@ body {
     border-color: transparent !important;
 }
 
-.dropdown-expand-btns, .dropup-btn {
+.right-btns, .dropup-btn {
     float: right;
     right: 10px;
 }
@@ -62,7 +62,7 @@ body {
 }
 
 .bi-plus {
-    font-size: 45px;
+    font-size: 50px;
 }
 
 .expand {

@@ -71,6 +71,10 @@ window.lastCam = function lastCam() {
     }
 }
 
+window.reload = function reload() {
+    loadCam()
+}
+
 window.dropUI = function dropUI() {
     document.getElementById("ui-container").style.display="none"
     document.getElementById("strm").style.height="100%"
@@ -95,6 +99,10 @@ document.addEventListener('keydown', (event) => {
 
     if (key == "ArrowLeft") {
         previousCam()
+    }
+
+    if (key == "r") {
+        reload()
     }
     
 }, false)
