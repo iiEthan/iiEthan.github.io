@@ -12,7 +12,7 @@ if (window.location.search.includes("cam")) {
     setURLParam(1)
 }
 
-function setURLParam(newCam) {
+window.setURLParam = function setURLParam(newCam) {
     history.replaceState('', '', `?cam=${newCam}`)
     loadCam() 
 }
@@ -72,7 +72,12 @@ window.lastCam = function lastCam() {
 }
 
 window.reload = function reload() {
-    loadCam()
+    let timestamp = new Date().getTime()
+    let element = document.getElementById("strm")
+    let imgURL = camsList[getCurrentCam()-1].url
+    
+    element.src = ""
+    element.src = imgURL + "?t=" + timestamp
 }
 
 window.dropUI = function dropUI() {

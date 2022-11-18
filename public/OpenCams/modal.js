@@ -1,8 +1,7 @@
 import * as db from './dbFunctions.js'
 import { getCurrentCam, setMax } from './stream.js'
 
-var camsList = (await db.get()).cam
-const countries = getCountries()
+export const countries = getCountries()
 
 // Get list of countries and country codes for add/update forms
 function getCountries(lang = 'en') {
@@ -39,9 +38,42 @@ function getCountries(lang = 'en') {
     return countries
 }
 
+// Hides the forms
+async function closeModal(id) {
+    await setMax()
+
+    const modalEl = document.getElementById(id)
+    const modal = bootstrap.Modal.getInstance(modalEl)
+    modal.hide()
+}
+
+// Formats data to be pushed to api
+function formatPostData(event) { 
+    let country
+    const element = event.target.elements
+
+    // differentiate between update and add form
+    if (typeof element.countrySelection != "undefined") {
+        country = element.countrySelection.value
+    } else {
+        country = element.updateCountrySelect.value
+    }
+
+    const cc = Object.keys(countries).find(key => countries[key] === country)  
+    const data = {
+        title: event.target[1].value,
+        url: event.target[2].value,
+        cc: cc,
+        id: camsList.length + 1,
+        passcode: event.target[4].value
+    }
+    return data
+}
+
 // Fires when a modal is opened
-window.modalLoad = function modalLoad(event) {
+window.modalLoad = async function modalLoad(event) {
     let camNum = getCurrentCam()
+    let camsList = (await db.get()).cam
 
     // Updates current selected country
     if (event.target.id == "update-item") {
@@ -88,38 +120,25 @@ window.modalLoad = function modalLoad(event) {
             }
         }
     }
-}
 
-// Hides the forms
-async function closeModal(id) {
-    await setMax()
+    // Adds cameras to list modal
+    if (event.target.id == "list-items") {
+        const element = document.getElementById("listCams")
 
-    const modalEl = document.getElementById(id)
-    const modal = bootstrap.Modal.getInstance(modalEl)
-    modal.hide()
-}
+        if (element.childElementCount != camsList.length) {
+            element.innerHTML = ""
 
-// Formats data to be pushed to api
-function formatPostData(event) { 
-    let country
-    const element = event.target.elements
-
-    // differentiate between update and add form
-    if (typeof element.countrySelection != "undefined") {
-        country = element.countrySelection.value
-    } else {
-        country = element.updateCountrySelect.value
+            for (const i in camsList) {
+              element.innerHTML += 
+              `<a onclick="setURLParam(${Number(i)+1})" class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <span class="fi fi-${camsList[i].cc.toLowerCase()} modal-flag" title="${countries[camsList[i].cc]}"></span>
+                        &nbsp;${camsList[i].title}
+                    </div>
+                </a>`
+            }
+        }
     }
-
-    const cc = Object.keys(countries).find(key => countries[key] === country)  
-    const data = {
-        title: event.target[1].value,
-        url: event.target[2].value,
-        cc: cc,
-        id: camsList.length + 1,
-        passcode: event.target[4].value
-    }
-    return data
 }
 
 // Add handler
@@ -132,7 +151,6 @@ window.addCam = async function addCam(event) {
     if (await db.post(data)) {
         await closeModal('addModal')
         if (!err.hasAttribute("hidden")) err.hidden = true
-        camsList = (await db.get()).cam
     } else {
         if (err.hasAttribute("hidden")) err.removeAttribute("hidden")
     }
@@ -159,13 +177,13 @@ window.removeCam = async function removeCam(event) {
     event.preventDefault()
     let err = document.getElementById('removeError')
 
+    let camsList = (await db.get()).cam
     let data = camsList[getCurrentCam() - 1]
     data.passcode = event.target[2].value
 
     if (await db.remove(data)) {
         await closeModal('removeModal')
         if (!err.hasAttribute("hidden")) err.hidden = true
-        camsList = (await db.get()).cam
     } else {
         if (err.hasAttribute("hidden")) err.removeAttribute("hidden")
     }

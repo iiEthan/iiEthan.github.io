@@ -135,3 +135,17 @@ body {
     color: rgb(255, 0, 0);
     text-align: center;
  }
+
+ .modal-flag {
+    font-size: 20px;
+    top: 3px;
+    border-radius: 3px 3px 3px 3px;
+ }
+
+ .list-group-item {
+    cursor: pointer;
+ }
+
+ .list-group-item:active {
+    background-color: rgb(220, 220, 220);
+ }

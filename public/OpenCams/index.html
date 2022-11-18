@@ -60,7 +60,7 @@
                         <li><a class="dropdown-item" id="add-item" data-bs-toggle="modal" onclick="modalLoad(event)" data-bs-target="#addModal">Add camera<span class="admin-only">  (admin)</span></a></li>
                         <li><a class="dropdown-item" id="update-item" data-bs-toggle="modal" onclick="modalLoad(event)" data-bs-target="#updateModal">Update camera<span class="admin-only">  (admin)</span></a></li>
                         <li><a class="dropdown-item" id="remove-item" data-bs-toggle="modal" onclick="modalLoad(event)" data-bs-target="#removeModal">Remove camera<span class="admin-only">  (admin)</span></a></li>
-                        <li><a class="dropdown-item" onclick="">Camera list</a></li>                                        
+                        <li><a class="dropdown-item" id="list-items" data-bs-toggle="modal" onclick="modalLoad(event)" data-bs-target="#listModal">Camera list</a></li>
                     </ul>
                 </div>
             </div>
@@ -171,6 +171,20 @@
                 </div>
             </form>
 
+            <!-- List Modal -->
+            <div class="modal fade" id="listModal" tabindex="-1" aria-labelledby="listModal" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="listModalLabel">Camera list</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <ol id="listCams" class="list-group list-group-numbered">
+                    </div>
+                </div>
+                </div>
+            </div>
         </id>
     </body>
 </html> 
