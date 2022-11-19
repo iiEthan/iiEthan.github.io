@@ -48,9 +48,10 @@ async function closeModal(id) {
 }
 
 // Formats data to be pushed to api
-function formatPostData(event) { 
+async function formatPostData(event) { 
     let country
     const element = event.target.elements
+    let camsList = (await db.get()).cam
 
     // differentiate between update and add form
     if (typeof element.countrySelection != "undefined") {
@@ -146,7 +147,7 @@ window.addCam = async function addCam(event) {
     event.preventDefault()
     let err = document.getElementById('addError')
 
-    let data = formatPostData(event)
+    let data = await formatPostData(event)
 
     if (await db.post(data)) {
         await closeModal('addModal')
@@ -161,7 +162,7 @@ window.updateCam = async function updateCam(event) {
     event.preventDefault()
     let err = document.getElementById('updateError')
 
-    let data = formatPostData(event)
+    let data = await formatPostData(event)
     data.id = getCurrentCam() + 1
 
     if (await db.update(data)) {
