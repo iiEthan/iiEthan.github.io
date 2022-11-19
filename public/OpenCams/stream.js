@@ -31,16 +31,16 @@ export async function setMax() {
 
 async function loadCam() {
     camNum = getCurrentCam()
-
+    
     // Height may be different because of dropdown button
     let streamHeight = ""
     if (dropped) {streamHeight = `style="height:100%"`}
-
+    
     document.getElementById("number").innerHTML = camNum
     const cam = await db.get(camNum)
-    document.getElementById("stream").innerHTML = `<img class="stream" id="strm" src="${cam.url}"${streamHeight}></img>`
     document.getElementById("title").innerHTML = cam.title
     document.getElementById("flag").innerHTML = `<span class="fi fi-${cam.cc.toLowerCase()}" title="${cam.cc}"></span>`
+    document.getElementById("stream").innerHTML = `<img class="stream" id="strm" src="${cam.url}"${streamHeight}></img>`
 }
 
 window.firstCam = function firstCam() {
@@ -97,15 +97,15 @@ window.showUI = function showUI() {
 
 document.addEventListener('keydown', (event) => {
     let key = event.key
-
+    
     if (key == "ArrowRight") {
         nextCam()
     }
-
+    
     if (key == "ArrowLeft") {
         previousCam()
     }
-
+    
     if (key == "r") {
         reload()
     }

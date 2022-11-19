@@ -18,15 +18,16 @@ const adapter = new JSONFile(file)
 const db = new Low(adapter)
 
 // Start up express server
+const port = 3000
 const app = express()
-app.listen(80, () => console.log("listening at 80")) 
+app.listen(port, () => console.log(`listening at ${port}`)) 
 app.use(express.static("public")) // Load files in public directory
 app.use(express.json({ limit: "1mb" })) // Prevent db from flooding
 
 app.use(session({
-	secret: 'secret',
-	resave: true,
-	saveUninitialized: true
+  secret: 'secret',
+  resave: true,
+  saveUninitialized: true
 }))
 app.use(express.urlencoded({ extended: true }))
 
@@ -38,13 +39,13 @@ app.post("/api/:id", async (request, response) => {
   // Verify validity of data before pushing
   const validate = await validateData(cam)
   delete cam.passcode
-
+  
   if (validate[0]) {
     await db.read()   
     db.data.cam.push(cam)
     await db.write()
   }
-
+  
   response.json({
     status: validate,
     body: request.body
@@ -69,11 +70,11 @@ app.delete('/api/:id', async (request, response) => {
   const cam = request.body
   await db.read()
   let cameras = db.data.cam
-
+  
   // Verify validity of data before pushing
   const validate = await validateData(cam)
   delete cam.passcode
-
+  
   // Remove item from the cam array
   if (validate[0]) {
     cameras = cameras.filter(i => i.id !== cam.id)
@@ -82,11 +83,11 @@ app.delete('/api/:id', async (request, response) => {
       camera.id = count
       count++
     })
-
+    
     db.data.cam = cameras
     db.write()
   }
-
+  
   response.json({
     status: validate,
     body: request.body
@@ -98,11 +99,11 @@ app.patch("/api/:id", async (request, response) => {
   const cam = request.body
   const id = Number(request.params.id)
   cam.id = id
-
+  
   // Verify validity of data before pushing
   const validate = await validateData(cam)
   delete cam.passcode
-
+  
   if (validate[0]) {
     await db.read()   
     db.data.cam[id-1] = cam
@@ -126,5 +127,5 @@ async function validateData(content) {
   } else {
     return [false, "Failed: Bad data formatting"]
   }
-
+  
 }
