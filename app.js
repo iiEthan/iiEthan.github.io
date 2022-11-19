@@ -19,7 +19,7 @@ const db = new Low(adapter)
 
 // Start up express server
 const app = express()
-app.listen(3000, () => console.log("listening at 3000")) 
+app.listen(80, () => console.log("listening at 80")) 
 app.use(express.static("public")) // Load files in public directory
 app.use(express.json({ limit: "1mb" })) // Prevent db from flooding
 
