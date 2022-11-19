@@ -5,16 +5,16 @@ var max = camsList.length
 var camNum = getCurrentCam()
 var dropped = false
 
+window.setURLParam = function setURLParam(newCam) {
+    history.replaceState('', '', `?cam=${newCam}`)
+    loadCam() 
+}
+
 // Check if we have url params, set to first if none provided
 if (window.location.search.includes("cam")) {
     loadCam()
 } else {
     setURLParam(1)
-}
-
-window.setURLParam = function setURLParam(newCam) {
-    history.replaceState('', '', `?cam=${newCam}`)
-    loadCam() 
 }
 
 export function getCurrentCam() {
