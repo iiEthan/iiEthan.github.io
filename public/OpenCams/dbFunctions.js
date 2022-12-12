@@ -1,10 +1,9 @@
- 
- export async function get(id) {
+export async function get(id) {
 	// If no id is given, we will retrieve the entire database
 	let api = "/api"
 	if (id !== undefined) {
 		api = `/api/${id}`
-	} 
+	}
 	
 	const response = await fetch(api, {
 		method: "GET",

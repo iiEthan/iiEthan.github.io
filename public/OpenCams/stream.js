@@ -36,6 +36,7 @@ async function loadCam() {
     let streamHeight = ""
     if (dropped) {streamHeight = `style="height:100%"`}
     
+    document.getElementById("stream").innerHTML = ""
     document.getElementById("number").innerHTML = camNum
     const cam = await db.get(camNum)
     document.getElementById("title").innerHTML = cam.title

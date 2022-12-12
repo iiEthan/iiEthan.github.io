@@ -3,6 +3,7 @@ import { Low, JSONFile } from 'lowdb'
 import { fileURLToPath } from 'url'
 import express from 'express'
 import session from 'express-session'
+import vhost from 'vhost'
 import bcrypt from 'bcrypt'
 
 // Must use require to import json file
@@ -20,8 +21,6 @@ const db = new Low(adapter)
 // Start up express server
 const port = 3000
 const app = express()
-app.listen(port, () => console.log(`listening at ${port}`)) 
-app.use(express.static("public")) // Load files in public directory
 app.use(express.json({ limit: "1mb" })) // Prevent db from flooding
 
 app.use(session({
@@ -30,6 +29,13 @@ app.use(session({
   saveUninitialized: true
 }))
 app.use(express.urlencoded({ extended: true }))
+
+// Route cams subdomain
+const cams = express()
+cams.use(express.static("public/OpenCams")) // Load files in public directory
+app.use(vhost('cams.localhost', cams));
+app.use(express.static("public/main")) // Load files in public directory
+app.listen(port, () => console.log(`listening at ${port}`)) 
 
 
 // POST cam
@@ -116,6 +122,7 @@ app.patch("/api/:id", async (request, response) => {
   })
 })
 
+// Verify password and data integrity
 async function validateData(content) {
   // Check to see if all keys are in object
   if ("title" in content && "url" in content && "id" in content) {
@@ -126,6 +133,6 @@ async function validateData(content) {
     }
   } else {
     return [false, "Failed: Bad data formatting"]
-  }
-  
+  } 
+
 }
