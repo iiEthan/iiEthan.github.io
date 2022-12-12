@@ -2,9 +2,7 @@ import { join, dirname } from 'path'
 import { Low, JSONFile } from 'lowdb'
 import { fileURLToPath } from 'url'
 import bcrypt from 'bcrypt'
-import { cams } from './mainApp.js'
 import express from 'express'
-import session from 'express-session'
 
 // Must use require to import json file
 import { createRequire } from 'module'
@@ -18,14 +16,10 @@ const file = join(__dirname, './public/OpenCams/db.json')
 const adapter = new JSONFile(file)
 const db = new Low(adapter)
 
-cams.use(express.json({ limit: "1mb" })) // Prevent db from flooding
+// Create new express instance
+export const cams = express()
 
-cams.use(session({
-  secret: 'secret',
-  resave: true,
-  saveUninitialized: true
-}))
-cams.use(express.urlencoded({ extended: true }))
+cams.use(express.json({ limit: "1mb" })) // Prevent db from flooding
 
 // POST cam
 cams.post("/api/:id", async (request, response) => {

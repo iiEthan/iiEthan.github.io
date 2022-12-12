@@ -1,10 +1,10 @@
 import express from 'express'
 import vhost from 'vhost'
+import { cams } from './camsApp.js'
 
 const domain = 'localhost'
 const port = 3000
 const mainApp = express()
-export const cams = express()
 
 // Route cams subdomain
 mainApp.use(vhost(`cams.${domain}`, cams))
