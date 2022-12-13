@@ -12,7 +12,7 @@ tsParticles.load("tsparticles", {
         resize: true
       },
       modes: {
-        bubble: { distance: 250, duration: 2, opacity: 1, size: 0.1, speed: 3 },
+        bubble: { distance: 200, duration: 2, opacity: 1, size: 0.1, speed: 3 },
         grab: { distance: 400, line_linked: { opacity: 1 } },
         push: { particles_nb: 4 },
         remove: { particles_nb: 2 },
