@@ -1,6 +1,8 @@
-body {
+* {
     margin: 0;
-    font: normal 75% Arial, Helvetica, sans-serif;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 canvas {
@@ -28,7 +30,7 @@ canvas {
     transform: translate(-50%, -50%);
 }
 
-#header {
+#intro-screen {
     position: relative;
     min-height: 75vh;
 }
@@ -45,6 +47,7 @@ canvas {
 
 #h1 {
     white-space: nowrap;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 #student {
@@ -61,4 +64,55 @@ canvas {
     width: 100%;
     overflow: hidden;
     pointer-events: none;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.6s;
+    padding: 40px 100px;
+    z-index: 1;
+}
+
+header.sticky {
+    padding: 5px 100px;
+    background-color: #181a1b;
+}
+
+header .logo {
+    position: relative;
+    font-weight: 700;
+    color: #fff;
+    text-decoration: none;
+    font-size: 2em;
+    letter-spacing: 2px;
+    transition: 0.6s;
+}
+
+header ul {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header ul li {
+    position: relative;
+    list-style: none;
+    min-width: 0px;
+}
+
+header ul li a {
+    position: relative;
+    margin: 0 15px;
+    text-decoration: none;
+    color: #fff;
+    letter-spacing: 2px;
+    font-weight: 500px;
+    transition: 0.6s;
 }
