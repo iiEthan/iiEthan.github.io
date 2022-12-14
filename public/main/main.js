@@ -1,6 +1,11 @@
 // Fade in title card text
 window.onload = function() {
-    var element = document.querySelector('.fade-up')
+    const fadeCollection = Object.values(document.getElementsByClassName("fade-up"))
     
-    element.classList.add('visible')
+    fadeCollection.forEach(element => {
+        
+        for (const element of fadeCollection) {
+            element.classList.add('visible')
+        }    
+    })
 }

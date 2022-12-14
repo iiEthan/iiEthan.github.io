@@ -53,12 +53,6 @@ tsParticles.load("tsparticles", {
           value: "*",
           weight: "400"
         },
-        image: {
-          height: 100,
-          replace_color: true,
-          src: "images/github.svg",
-          width: 100
-        },
         polygon: { nb_sides: 5 },
         stroke: { color: "#000000", width: 0 },
         type: "circle"

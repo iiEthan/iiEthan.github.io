@@ -10,13 +10,13 @@ canvas {
 
 #tsparticles {
     position: relative;
-    height: 80vh;
+    height: 75vh;
 }
 
-.title-card {
+.fade-up {
     /* Initially, the element has 0% opacity and is hidden off the bottom of the screen */
     opacity: 0;
-    transform: translate(-50%, 50%);
+    transform: translate(-50%, -25%);
     
     /* Use a transition to smoothly animate the element's opacity and position when it becomes visible */
     transition: opacity .75s ease-out, transform .75s ease-out;
@@ -30,20 +30,35 @@ canvas {
 
 #header {
     position: relative;
-    min-height: 80vh;
+    min-height: 75vh;
 }
 
-.title-card {
+#title-card {
     color: white;
-    top: 40%;
-    pointer-events: none;
+    top: 50%;
     position: absolute;
     left: 50%;
-    font-size: 75px;
+    font-size: 40px;
+    pointer-events: none;
+    text-align: center;
 }
 
-.center {
+#h1 {
+    white-space: nowrap;
+}
+
+#student {
+    font-size: 30px;
+    max-width: 800px;
+}
+
+.seperator-skew {
     position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 150px;
     width: 100%;
-    text-align: center;
+    overflow: hidden;
+    pointer-events: none;
 }
