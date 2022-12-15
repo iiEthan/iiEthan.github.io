@@ -2,8 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
-}
+    font-family: "Inter", sans-serif;}
 
 canvas {
     display: block;
@@ -40,18 +39,25 @@ canvas {
     top: 50%;
     position: absolute;
     left: 50%;
-    font-size: 40px;
+    font-size: 35px;
     pointer-events: none;
     text-align: center;
 }
 
 #h1 {
     white-space: nowrap;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: "Alfa Slab One", "Poppins";
+    font-weight: 400;
+    letter-spacing: 2px;
+}
+
+#name {
+    color: #2a5fff;
+    font-family: "Alfa Slab One", "Poppins";
 }
 
 #student {
-    font-size: 30px;
+    font-size: 25px;
     max-width: 800px;
 }
 
@@ -87,8 +93,8 @@ header.sticky {
 }
 
 header .logo {
+    font-family: monospace;
     position: relative;
-    font-weight: 700;
     color: #fff;
     text-decoration: none;
     font-size: 2em;
