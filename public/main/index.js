@@ -11,6 +11,6 @@ window.onload = function() {
 
 // Navbar change when scrolling
 window.addEventListener("scroll", function() {
-    var header = this.document.querySelector("header")
+    var header = this.document.querySelector("nav")
     header.classList.toggle("sticky", window.scrollY > 0)
 })

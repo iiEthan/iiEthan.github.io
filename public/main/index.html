@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <header>
+    <nav>
         <a href="#" class="logo">Ethan Gibbs</a>
         <ul>
             <li><a href="#">Home</a></li>
@@ -19,11 +19,10 @@
             <li><a href="#">Skills</a></li>
             <li><a href="#">Contact</a></li>
         </ul>
-    </header>
-    <section class="banner"></section>
+    </nav>
     
     <!--INTRO-->
-    <div id="intro-screen">
+    <div class="parallax">
         <div id="tsparticles"></div>
         <div id="title-card" class="fade-up">
             <h1 id="h1">
@@ -31,22 +30,22 @@
                 <span id="name">Ethan</span>
             </h1> 
             <p id="student">
-                Full-stack developer. Computer science student at UT Dallas.
+                I'm a software developer that welcomes challenges and architects solutions. 
+                Currently studying at UT Dallas.
             </p>    
         </div>
-        
+    </div>
+    
+    <div id="parallax-foreground">
         <div class="seperator-skew">
             <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg" style="position: absolute;bottom: -1px;">
                 <polygon class="fill-white" points="2560 0 2560 100 0 100" style="fill:white;"></polygon>
             </svg>
         </div>
-        
     </div>
     
-    <h2 id="test" style="height:2000px;"></h2>
-    
     <script src="./particles.js"></script>
-    <script src="./main.js"></script>
+    <script src="./index.js"></script>
 </body>
 
 </html>

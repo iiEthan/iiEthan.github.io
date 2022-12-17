@@ -2,7 +2,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Inter", sans-serif;}
+    font-family: "Inter", sans-serif;
+}
 
 canvas {
     display: block;
@@ -29,10 +30,60 @@ canvas {
     transform: translate(-50%, -50%);
 }
 
-#intro-screen {
-    position: relative;
-    min-height: 75vh;
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.6s;
+    padding: 40px 100px;
+    z-index: 10;
+    pointer-events: none;
 }
+
+nav.sticky {
+    padding: 10px 100px;
+    background: #00000090;
+    backdrop-filter: blur(10px);
+}
+
+nav .logo {
+    font-family: monospace;
+    position: relative;
+    color: #fff;
+    text-decoration: none;
+    font-size: 2em;
+    letter-spacing: 2px;
+    transition: 0.6s;
+    pointer-events: all;
+}
+
+nav ul {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: all;
+}
+
+nav ul li {
+    position: relative;
+    list-style: none;
+    min-width: 0px;
+}
+
+nav ul li a {
+    position: relative;
+    margin: 0 15px;
+    text-decoration: none;
+    color: #fff;
+    letter-spacing: 2px;
+    font-weight: 500px;
+    transition: 0.6s;
+} 
 
 #title-card {
     color: white;
@@ -49,6 +100,7 @@ canvas {
     font-family: "Alfa Slab One", "Poppins";
     font-weight: 400;
     letter-spacing: 2px;
+    text-shadow: 0 0 5px black;;
 }
 
 #name {
@@ -57,72 +109,30 @@ canvas {
 }
 
 #student {
+    text-shadow: 0 0 3px black;;
     font-size: 25px;
-    max-width: 800px;
+    max-width: 550px;
 }
 
 .seperator-skew {
     position: absolute;
-    bottom: 0;
     left: 0;
     right: 0;
-    height: 150px;
     width: 100%;
-    overflow: hidden;
     pointer-events: none;
 }
 
-header {
+.parallax {
+    background-color: black;
     position: fixed;
-    top: 0;
     left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: 0.6s;
-    padding: 40px 100px;
-    z-index: 1;
-    pointer-events: none;
+    right: 0;
+    top: 0;
 }
 
-header.sticky {
-    padding: 10px 100px;
-    background: #00000090;
-    backdrop-filter: blur(10px);
-}
-
-header .logo {
-    font-family: monospace;
+#parallax-foreground {
+    margin: 75vh 0 0 0;
+    height: 1500px;
+    background: white;
     position: relative;
-    color: #fff;
-    text-decoration: none;
-    font-size: 2em;
-    letter-spacing: 2px;
-    transition: 0.6s;
-    pointer-events: all;
-}
-
-header ul {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    pointer-events: all;
-}
-
-header ul li {
-    position: relative;
-    list-style: none;
-    min-width: 0px;
-}
-
-header ul li a {
-    position: relative;
-    margin: 0 15px;
-    text-decoration: none;
-    color: #fff;
-    letter-spacing: 2px;
-    font-weight: 500px;
-    transition: 0.6s;
 }
