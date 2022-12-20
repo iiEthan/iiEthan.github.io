@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Inter", sans-serif;
+    font-family: "Poppins";
 }
 
 canvas {
@@ -97,15 +97,30 @@ nav ul li a {
 
 #h1 {
     white-space: nowrap;
-    font-family: "Alfa Slab One", "Poppins";
-    font-weight: 400;
+    font-family: "Russo One";
+    font-weight: 700;
     letter-spacing: 2px;
-    text-shadow: 0 0 5px black;;
+    text-shadow: 0 0 5px black;
+    padding: 5px;
+}
+
+
+#h1 .contrast {
+    color: #2a5fff;
+    font-family: "Russo One";
 }
 
 .contrast {
     color: #2a5fff;
-    font-family: "Alfa Slab One", "Poppins";
+}
+
+.subheader {
+    font-size: 35px;
+    white-space: nowrap;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-align: center;
+    position: inherit
 }
 
 #bio {
@@ -136,20 +151,10 @@ nav ul li a {
     position: relative;
 }
 
-.subheader {
-    font-size: 35px;
-    white-space: nowrap;
-    font-family: "Alfa Slab One", "Poppins";
-    font-weight: 400;
-    letter-spacing: 2px;
-    text-align: center;
-    position: inherit
-}
-
 .section {
     position: relative;
     padding: 50px;
-    height: 1000px;
+    height: 1000px; /* TEMPORARY */
 }
 
 .dark {
@@ -163,3 +168,26 @@ nav ul li a {
     color: white;
 }
 
+#portrait {
+    display: inline-block;
+    border-radius: 50%;
+    overflow: hidden;
+    width: 200px;
+    height: 200px;
+    border: 3px dotted #181a1b;
+}
+
+#portrait img {
+    width:100%;
+    height:100%;
+    object-fit: cover;
+}
+
+#about-content {
+    padding: 50px 200px 100px 100px;
+}
+
+footer {
+    background-color: #181a1b;
+    height: 150px;
+}
