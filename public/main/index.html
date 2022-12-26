@@ -6,10 +6,10 @@
     
     <meta name="viewport" content="with=device-width, intial-scale=1.0">
     <link rel="stylesheet" href="./main.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css"> 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">     <link href="https://fonts.googleapis.com/css?family=Poppins&amp;display=swap" rel="stylesheet">
-    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tsparticles/1.18.11/tsparticles.min.js"> </script>
 </head>
 
@@ -18,9 +18,9 @@
         <a href="#" class="logo">Ethan Gibbs</a>
         <ul>
             <li><a href="#">Home</a></li>
-            <li><a href="#">About Me</a></li>
-            <li><a href="#">Projects</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="#about-section">About Me</a></li>
+            <li><a href="#projects-section">Projects</a></li>
+            <li><a href="#contact-section">Contact</a></li>
         </ul>
     </nav>
     
@@ -44,23 +44,82 @@
         <div class="seperator-skew light"></div>
         
         <!--ABOUT ME-->
-        <div class="section">
+        <div id="about-section" class="section">
             <div class="subheader">
                 About <span class="contrast">Me</span>
             </div>
             
             <div id="about-content">
-                <!-- <span id="portrait"> 
-                    <img src="images/portrait.jpeg"> 
-                </span> -->
+                <div id="profile">
+                    <span id="portrait"> 
+                        <img src="images/portrait.jpeg"> 
+                    </span>
+                    <div id="about-me">
+                        Hey! I'm Ethan Gibbs and I am currently a sophomore computer science student. 
+                        I designed & developed this web page from scratch and hope to expand it as I continue my professional journey. 
+                        Apart from technology, I like to talk about urban planning, economics, and music. 
+                    </div>
+                </div>
+
+                <ul id="skills-icons">
+                    <li>
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"/>
+                        <span>JavaScript</span>
+                    </li>
+                    <li>
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"/>
+                        <span>Node.js</span>
+                    </li>
+                    <li>
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"/>
+                        <span>HTML</span>
+                    </li>
+                    <li>
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"/>
+                        <span>CSS</span>
+                    </li>
+                    <li>
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg"/>
+                        <span>Bootstrap</span>
+                    </li>
+                    <li>
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"/>
+                        <span>Python</span>
+                    </li>
+                    <li>
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"/>
+                        <span>Java</span>
+                    </li>
+                    <li>
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg"/>
+                        <span>C++</span>
+                    </li>
+                    <li>
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"/>
+                        <span>Git</span>
+                    </li>
+                    <li>
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg"/>
+                        <span>Linux</span>
+                    </li>
+                    <li>
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"/>
+                        <span>PostgreSQL</span>
+                    </li>
+                    <li>
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" />
+                        <span>Express</span>
+                    </li>
+                </ul>
                 
             </div>
+            
         </div>
         
         <div class="seperator-skew dark"></div>
         
         <!--MY PROJECTS-->
-        <div class="section dark">
+        <div id="projects-section" class="section dark">
             <div class="subheader">
                 My <span class="contrast">Projects</span>
             </div>
@@ -69,7 +128,7 @@
         <div class="seperator-skew light"></div>
         
         <!--CONTACT-->
-        <div class="section">
+        <div id="contact-section" class="section">
             <div class="subheader">
                 Contact <span class="contrast">Me</span>
             </div>
