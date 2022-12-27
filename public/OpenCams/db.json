@@ -1,14 +1,14 @@
 {
   "cam": [
     {
-      "title": "Blanton Bottling Plant",
-      "url": "http://camera.buffalotrace.com/mjpg/video.mjpg",
+      "title": "NYC Sidewalk",
+      "url": "http://72.43.190.171:81/mjpg/video.mjpg",
       "id": 1,
       "cc": "US"
     },
     {
-      "title": "NYC Sidewalk",
-      "url": "http://72.43.190.171:81/mjpg/video.mjpg",
+      "title": "Blanton Bottling Plant",
+      "url": "http://camera.buffalotrace.com/mjpg/video.mjpg",
       "id": 2,
       "cc": "US"
     },
@@ -317,12 +317,6 @@
       "url": "http://31.209.185.103/mjpg/video.mjpg",
       "cc": "DE",
       "id": 53
-    },
-    {
-      "title": "sex",
-      "url": "https://i.redd.it/sa4d5d5zg8q91.jpg",
-      "cc": "US",
-      "id": 54
     }
   ]
 }
