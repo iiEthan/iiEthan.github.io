@@ -20,9 +20,9 @@
         <a href="#" class="logo">Ethan Gibbs</a>
         <ul>
             <li><a href="#">Home</a></li>
-            <li><a href="#about-section">About Me</a></li>
-            <li><a href="#projects-section">Projects</a></li>
-            <li><a href="#contact-section">Contact</a></li>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
     
@@ -46,7 +46,7 @@
         <div class="seperator-skew light"></div>
         
         <!--ABOUT ME-->
-        <div id="about-section" class="section">
+        <div id="about" class="section">
             <div class="subheader">
                 About <span class="contrast">Me</span>
             </div>
@@ -124,7 +124,7 @@
             <div class="subheader">
                 My <span class="contrast">Projects</span>
             </div>
-
+            
             <div class="project">
                 <div class="project-image">
                     <img src="images/OpenCams.png"> 
@@ -145,7 +145,7 @@
                 </div>
             </div>
             
-            <div id="project-content">
+            <div id="projects">
                 <div class="project">
                     <div class="project-image">
                         <img src="images/Opportunity.png"> 
@@ -163,7 +163,7 @@
                         </div>
                     </div>
                 </div>
-
+                
                 <div class="project">
                     <div class="project-image">
                         <img src="images/usernotes.png"> 
@@ -172,7 +172,7 @@
                         <h1 class="project-title">Usernotes Database</h1>
                         <div class="project-description">
                             Minecraft Java plugin which allows server 
-                            administrators to handle punishments with ease
+                            administrators to handle punishments with ease.
                         </div>
                         <div class="project-links">
                             <a class="btn btn-outline-secondary" href="https://github.com/iiEthan/usernotes-database" target="_blank">
@@ -181,22 +181,48 @@
                         </div>
                     </div>
                 </div>
-
+                
             </div>
         </div>
         
         <div class="seperator-skew light"></div>
         
         <!--CONTACT-->
-        <div id="contact-section" class="section">
+        <div id="contact" class="section">
             <div class="subheader">
                 Contact <span class="contrast">Me</span>
             </div>
+
+            <p>Have a question or want to work together? Leave your details and I'll get back to you as soon as possible.</p>
+            
+            <div id="contact-items">
+                <form action="https://formspree.io/f/xbjerbva" method="POST">
+                    <label>
+                        Email:
+                        <input type="email" name="email" required>
+                    </label>
+                    <label>
+                        Message:
+                        <textarea name="message" required></textarea>
+                    </label>
+                    <button type="submit">Send</button>
+                </form>
+            </div>
+            
         </div>
     </div>
     
     <footer>
-        test
+        <div id="contact-cards">
+            <a id="contact-github" class="contact" href="https://github.com/iiEthan" target="_blank">
+                <i class="bi bi-github"></i>
+            </a>
+            <a id="contact-linkedin" class="contact" href="https://www.linkedin.com/in/ethan-gibbs/" target="_blank">
+                <i class="bi bi-linkedin"></i>
+            </a>
+        </div>
+        
+        <p class="copyright">ETHAN GIBBS ©2022</p>
     </footer>
     
     <script src="./particles.js"></script>
