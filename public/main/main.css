@@ -367,3 +367,26 @@ button[type="submit"]:hover {
     margin: auto;
     padding-bottom: 15px;
 }
+
+.fade-in {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.fade-in.right {
+    transform: translateX(100%);
+}
+
+.fade-in.left {
+    transform: translateX(-100%);
+}
+
+.fade-in.bottom {
+    transform: translateY(100%);
+}
+
+.fade-in.appear {
+    opacity: 1;
+    transform: translateX(0);
+    transform: translateY(0);
+}
