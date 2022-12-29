@@ -1,0 +1,3 @@
+[submodule "public/OpenCams"]
+	path = public/OpenCams
+	url = https://github.com/iiEthan/OpenCams
