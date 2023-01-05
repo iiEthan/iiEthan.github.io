@@ -19,7 +19,7 @@ const db = new Low(adapter)
 // Create new express instance
 export const cams = express()
 
-cams.use(express.json({ limit: "1mb" })) // Prevent db from flooding
+cams.use(express.static('public/OpenCams')) 
 
 // POST cam
 cams.post("/api/:id", async (request, response) => {
@@ -119,3 +119,5 @@ async function validateData(content) {
   } 
 
 }
+
+export default cams;

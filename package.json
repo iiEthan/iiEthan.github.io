@@ -6,6 +6,15 @@
     "express-http-to-https": "^1.1.4",
     "express-session": "^1.17.3",
     "lowdb": "^3.0.0",
-    "vhost": "^3.0.2"
+    "ol": "^7.2.2",
+    "vhost": "^3.0.2",
+    "webpack-dev-server": "^4.11.1"
+  },
+  "scripts": {
+    "start": "fuser -k 3000/tcp & node mainApp.js & webpack-dev-server --mode development --open"
+  },
+  "devDependencies": {
+    "html-loader": "^4.2.0",
+    "webpack-cli": "^5.0.1"
   }
 }
