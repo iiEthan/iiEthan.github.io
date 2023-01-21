@@ -1,33 +1,42 @@
-import path from 'path';
-import webpack from 'webpack';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 export default {
-  entry: './public/main/index.html',
+  entry: './src/entry.js',
   output: {
-    path: path.resolve(process.cwd(), 'dist'),
-    filename: 'app.js'
+    filename: '[name]-bundle.js',
+    clean: true,
+    assetModuleFilename: 'images/[name][ext]'
   },
+  experiments: {
+    topLevelAwait: true
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      hash: true,
+      template: './src/main/index.html',
+      inject: 'body'
+    })
+  ],
   module: {
     rules: [
       {
-        test: /\.html$/,
-        use: [
-          {
-            loader: 'html-loader'
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env']
           }
-        ]
-      }
+        }
+      },
+      { 
+        test: /\.css$/, 
+        use: ["style-loader", "css-loader"] 
+      },
+      { 
+        test: /\.(?:ico|gif|png|jpg|jpeg|svg)$/i,
+        type: 'asset/resource',
+      },
     ]
   },
-  devServer: {
-    proxy: {
-      '/': {
-        target: 'http://localhost:3000',
-        secure: false
-      }
-    }
-  },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin()
-  ]
 };

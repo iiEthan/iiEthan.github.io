@@ -1,6 +1,6 @@
-[submodule "public/OpenCams"]
-	path = public/OpenCams
+[submodule "src/OpenCams"]
+	path = src/OpenCams
 	url = https://github.com/iiEthan/OpenCams
-[submodule "public/Visualizing-America"]
-	path = public/Visualizing-America
+[submodule "src/Visualizing-America"]
+	path = src/Visualizing-America
 	url = https://github.com/iiEthan/Visualizing-America

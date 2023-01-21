@@ -7,19 +7,19 @@ import express from 'express'
 // Must use require to import json file
 import { createRequire } from 'module'
 const require = createRequire(import.meta.url)
-const json = require('./passcode.json')
+const json = require('../../src/OpenCams/passcode.json')
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
 // Use JSON file for storage
-const file = join(__dirname, './public/OpenCams/db.json')
+const file = join(__dirname, '../../src/OpenCams/db.json')
 const adapter = new JSONFile(file)
 const db = new Low(adapter)
 
 // Create new express instance
 export const cams = express()
 
-cams.use(express.static('public/OpenCams')) 
+cams.use(express.static('src/OpenCams')) 
 
 // POST cam
 cams.post("/api/:id", async (request, response) => {
