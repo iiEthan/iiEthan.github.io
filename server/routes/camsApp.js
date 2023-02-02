@@ -19,10 +19,30 @@ const db = new Low(adapter)
 // Create new express instance
 export const cams = express()
 
-cams.use(express.static('src/OpenCams')) 
+// Allows traffic from from website
+cams.use((req, res, next) => {
+  const allowedMethods = ['GET']
+  const origin = req.headers.origin;
+  
+  if (allowedMethods.includes(req.method)) {
+    res.header('Access-Control-Allow-Origin', '*');
+  } else if (origin === 'http://localhost:5173') {
+    res.header('Access-Control-Allow-Origin', origin)
+  } else {
+    res.sendStatus(403);
+    return
+  }
+
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+  next()
+});
+
+// Required in order to read incoming body content
+cams.use(express.json())
 
 // POST cam
-cams.post("/api/:id", async (request, response) => {
+cams.post("/cam/:id", async (request, response) => {
   const cam = request.body
   
   // Verify validity of data before pushing
@@ -42,20 +62,20 @@ cams.post("/api/:id", async (request, response) => {
 })
 
 // GET all cams
-cams.get('/api', async (request, response) => {
+cams.get('/cam', async (request, response) => {
   await db.read()
   response.json(db.data)
 })
 
 // GET specific cam
-cams.get('/api/:id', async (request, response) => {
+cams.get('/cam/:id', async (request, response) => {
   const id = request.params.id - 1
   await db.read()
   response.json(db.data.cam[id])
 })
 
 // DELETE cam
-cams.delete('/api/:id', async (request, response) => {
+cams.delete('/cam/:id', async (request, response) => {
   const cam = request.body
   await db.read()
   let cameras = db.data.cam

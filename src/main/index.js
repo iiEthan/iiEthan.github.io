@@ -1,3 +1,6 @@
+import './main.css'
+import './particles.js'
+
 window.onload = function() {
     
     // Fade in items on open
