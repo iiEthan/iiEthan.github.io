@@ -21,21 +21,10 @@ export const cams = express()
 
 // Allows traffic from from website
 cams.use((req, res, next) => {
-  const allowedMethods = ['GET']
-  const origin = req.headers.origin;
-  
-  if (allowedMethods.includes(req.method)) {
-    res.header('Access-Control-Allow-Origin', '*');
-  } else if (origin === 'http://localhost:5173') {
-    res.header('Access-Control-Allow-Origin', origin)
-  } else {
-    res.sendStatus(403);
-    return
-  }
-
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
-  next()
+  res.header('Access-Control-Allow-Origin', 'http://ethangibbs.me');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
 });
 
 // Required in order to read incoming body content

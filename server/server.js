@@ -3,7 +3,7 @@ import vhost from 'vhost';
 import { cams } from './routes/camsApp.js';
 import { maps } from './routes/mapsApp.js';
 
-const domain = 'localhost';
+const domain = 'ethangibbs.me';
 const port = '3000';
 const app = express();
 const main = express();
