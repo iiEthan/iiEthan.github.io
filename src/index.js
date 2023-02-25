@@ -45,6 +45,8 @@ function checkFadeIn() {
     });
   }
   
+  window.addEventListener("scroll", checkFadeIn);
+  
   checkFadeIn();
   
   // Navbar sticky when scrolling
