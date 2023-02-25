@@ -382,7 +382,7 @@ button[type="submit"]:hover {
 }
 
 .fade-in.bottom {
-    transform: translateY(100%);
+    transform: translateY(50%);
 }
 
 .fade-in.appear {
