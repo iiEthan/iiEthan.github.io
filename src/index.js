@@ -47,23 +47,6 @@ function checkFadeIn() {
   
   checkFadeIn();
   
-  // Debounces to reduce amount of work on scroll event
-  const debouncedCheckFadeIn = debounce(checkFadeIn, 100);
-  
-  window.addEventListener("scroll", debouncedCheckFadeIn);
-  
-  function debounce(func, wait) {
-    let timeout;
-    return function() {
-      const context = this, args = arguments;
-      clearTimeout(timeout);
-      timeout = setTimeout(() => {
-        timeout = null;
-        func.apply(context, args);
-      }, wait);
-    };
-  }
-  
   // Navbar sticky when scrolling
   window.addEventListener("scroll", function() {
     var header = this.document.querySelector("nav");
