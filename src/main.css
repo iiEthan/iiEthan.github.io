@@ -6,8 +6,9 @@
     scroll-behavior: smooth;
 }
 
-body {
+body, html {
     overflow-x: hidden;
+    position: relative;
 }
 
 canvas {
@@ -93,13 +94,11 @@ nav ul li a:hover, .logo:hover {
     color: #a7a7a7;
 }
 
-
 #title-card {
     color: white;
     top: 50%;
     position: absolute;
     left: 50%;
-    font-size: 35px;
     pointer-events: none;
     text-align: center;
     min-width: 400px;
