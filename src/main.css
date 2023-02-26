@@ -21,21 +21,6 @@ canvas {
     height: 75vh;
 }
 
-.fade-up {
-    /* Initially, the element has 0% opacity and is hidden off the bottom of the screen */
-    opacity: 0;
-    transform: translate(-50%, -25%);
-    
-    /* Use a transition to smoothly animate the element's opacity and position when it becomes visible */
-    transition: opacity .75s ease-out, transform .75s ease-out;
-}
-
-/* When the website opens, add a class to the element to make it visible */
-.visible {
-    opacity: 1;
-    transform: translate(-50%, -50%);
-}
-
 nav {
     position: fixed;
     top: 0;
@@ -96,12 +81,14 @@ nav ul li a:hover, .logo:hover {
 
 #title-card {
     color: white;
-    top: 50%;
-    position: absolute;
-    left: 50%;
+    top: 35%;
     pointer-events: none;
     text-align: center;
-    min-width: 400px;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
 }
 
 #h1 {
@@ -136,8 +123,10 @@ nav ul li a:hover, .logo:hover {
 
 #bio {
     text-shadow: 0 0 3px black;
-    font-size: 25px;
+    font-size: 1.6rem;
     max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .seperator-skew {
@@ -382,6 +371,11 @@ button[type="submit"]:hover {
 
 .fade-in.bottom {
     transform: translateY(50%);
+}
+
+.fade-in.slow {
+    transform: translateY(25%);
+    transition: opacity 0.75s ease-in-out, transform 0.75s ease-in-out;
 }
 
 .fade-in.appear {
