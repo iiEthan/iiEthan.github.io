@@ -3,7 +3,7 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   root: 'src',
   build: {
-    outDir: '../dist',
+    outDir: '../dist/',
     target: 'esnext',
     rollupOptions: {
       input: {
@@ -12,5 +12,6 @@ export default defineConfig({
         VisualizingAmerica: 'src/Visualizing-America/index.html',
       },
     },
+    assetsDir: '[name]/assets',
   },
 })

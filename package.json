@@ -14,7 +14,7 @@
   "scripts": {
     "dev": "vite serve --host & nodemon server/server.js",
     "build": "vite build --emptyOutDir",
-    "preview": "vite preview & node server/server.js",
+    "preview": "vite preview --host & node server/server.js",
     "start": "kill $(lsof -t -i:8080) & systemctl restart nginx & http-server -p 8080 ./dist & node server/server.js"
   },
   "devDependencies": {
