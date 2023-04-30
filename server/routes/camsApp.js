@@ -21,7 +21,7 @@ export const cams = express()
 
 // Allows traffic from from website
 cams.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'http://ethangibbs.me');
+  res.header('Access-Control-Allow-Origin', 'http://cams.ethangibbs.me');
   //res.header('Access-Control-Allow-Origin', 'localhost');
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
