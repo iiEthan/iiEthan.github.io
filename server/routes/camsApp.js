@@ -23,7 +23,7 @@ export const cams = express()
 cams.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'http://cams.ethangibbs.me');
   //res.header('Access-Control-Allow-Origin', 'localhost');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, DELETE, OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
 });
@@ -94,7 +94,7 @@ cams.delete('/cam/:id', async (request, response) => {
 })
 
 // UPDATE cam
-cams.patch("/api/:id", async (request, response) => {
+cams.patch("/cam/:id", async (request, response) => {
   const cam = request.body
   const id = Number(request.params.id)
   cam.id = id

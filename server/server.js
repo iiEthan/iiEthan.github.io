@@ -11,6 +11,6 @@ const main = express();
 // Set up the vhost middleware
 app.use(vhost(domain, main));
 app.use(vhost(domain, cams));
-app.use(vhost(domain, maps));
+//app.use(vhost(domain, maps));
 
 app.listen(port, () => console.log(`App listening on port ${port}`));
