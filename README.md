@@ -16,6 +16,7 @@ Change directory and install node packages
 ```
 cd ethangibbs.me/
 npm i
+npm i -g nodemon
 ```
 
 Build project files and preview
